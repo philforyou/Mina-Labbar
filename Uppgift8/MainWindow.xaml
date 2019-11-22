@@ -1,0 +1,21 @@
+﻿<Window x:Class="Uppgift8.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Uppgift8"
+        mc:Ignorable="d"
+        Title="Kalkylator" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="Tal1" HorizontalAlignment="Left" Margin="90,179,0,0" Text="   " TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="Tal1_TextChanged"/>
+        <TextBox x:Name="Tal2" HorizontalAlignment="Left" Margin="330,179,0,0" Text="   " TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="Tal2_TextChanged"/>
+        <TextBox x:Name="Resultat" HorizontalAlignment="Left" Margin="590,179,0,0" Text="   " TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="Resultat_TextChanged"/>
+        <RadioButton x:Name="plusknapp" Content="  +  " HorizontalAlignment="Left" Margin="253,160,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <RadioButton x:Name="minusknapp" Content="  -  " HorizontalAlignment="Left" Margin="253,178,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
+        <RadioButton x:Name="gångerknapp" Content="  *  " HorizontalAlignment="Left" Margin="253,193,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_2"/>
+        <RadioButton x:Name="delatknapp" Content="  /  " HorizontalAlignment="Left" Margin="253,0,0,0" VerticalAlignment="Center" Checked="RadioButton_Checked_3"/>
+        <Button Content="Beräkna" HorizontalAlignment="Left" Margin="465,178,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Label Content="=" HorizontalAlignment="Left" Margin="527,144,0,0" VerticalAlignment="Top" FontSize="48"/>
+
+    </Grid>
+</Window>

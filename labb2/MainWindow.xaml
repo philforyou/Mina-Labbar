@@ -1,0 +1,18 @@
+﻿<Window x:Class="labb2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:labb2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="340,194,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <TextBox x:Name="addresb" HorizontalAlignment="Left" Margin="90,79,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="cellphoneb" HorizontalAlignment="Left" Margin="90,119,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="firstnameb"  HorizontalAlignment="Left" Margin="90,164,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="lastnameb" HorizontalAlignment="Left" Margin="90,199,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="visa" Content="Label" HorizontalAlignment="Left" Margin="605,137,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

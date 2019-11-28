@@ -59,8 +59,8 @@ namespace Uppgift15
         {
             string gtext = grundtext.Text;
           
-            string skit = "";
-            int nyskiten = 0;
+            string ord = "";
+            int siffra = 0;
             foreach (char item in gtext)
             {
                 bool bjas = isVowel(item);
@@ -69,11 +69,11 @@ namespace Uppgift15
                 {
 
 
-                    skit = Jibberish(item);
-                    nytext.Content += skit;
+                    ord = Jibberish(item);
+                    nytext.Content += ord;
 
-                    nyskiten += NumberOfVowels(item.ToString());
-                    gånger.Content = $"{nyskiten}";
+                    siffra += NumberOfVowels(item.ToString());
+                    gånger.Content = $"{siffra}";
                 }
 
                 else

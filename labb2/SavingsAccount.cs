@@ -4,7 +4,7 @@ using System.Text;
 
 namespace labb2
 {
-    class SavingsAccount: BankAccount
+    public class SavingsAccount: BankAccount
     {
 
         

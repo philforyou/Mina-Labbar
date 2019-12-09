@@ -6,27 +6,29 @@ namespace labb2
 {
 
 
-    class BankAccount
+    public class BankAccount
     {
         public string AccountType { get; set; }
 
         public decimal Balance { get; protected set; }
 
+        public decimal Credit { get; protected set; }
 
-        public List<Customer> customers { get; protected set; } = new List<Customer>();
 
-
-            public decimal Insättning(decimal deposit)
+        public decimal Insättning(decimal deposit)
         {
             Balance = Balance + deposit;
-          
-
-
             return Balance;
         }
 
+        public decimal SetCredit(decimal kreditamount)
+        {
+            Credit = kreditamount;
+            return Credit;
+        }
 
-        public virtual bool Uttag(decimal withdrawl)
+
+        public virtual bool Uttaggodkänt(decimal withdrawl)
         { 
             if (Balance >= withdrawl)
             { return true; }
@@ -34,13 +36,23 @@ namespace labb2
                 return false; 
         }
 
+        public decimal Uttag (decimal withdrawl)
+        {
+            Balance = Balance - withdrawl;
+            return Balance;
+        }
+
         
         public virtual decimal TillgängligtSaldo()
         {
             decimal availblebalance = Balance;
+              return availblebalance; 
+        }
 
-
-              return availblebalance; }
+        public override string ToString()
+        {
+            return $"{AccountType} Saldo: {Balance}KR Tillgänglig Kredit {Credit}";
+        }
     }
 
 }

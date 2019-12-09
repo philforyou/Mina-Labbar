@@ -5,14 +5,92 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:labb2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="863" Width="928" Background="LightSlateGray">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="340,194,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <TextBox x:Name="addresb" HorizontalAlignment="Left" Margin="90,79,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="cellphoneb" HorizontalAlignment="Left" Margin="90,119,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="firstnameb"  HorizontalAlignment="Left" Margin="90,164,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="lastnameb" HorizontalAlignment="Left" Margin="90,199,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="visa" Content="Label" HorizontalAlignment="Left" Margin="605,137,0,0" VerticalAlignment="Top"/>
+        <!-- Definierar rader och kolumner -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="159*"/>
+            <ColumnDefinition Width="159*"/>
 
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Sätter bakgrundsfärger i olika celler -->
+        <Border Grid.Column="0" Background="LightSlateGray" Grid.ColumnSpan="5"/>
+        <!-- Första raden -->
+        <Border Grid.Column="0" Background="LightSlateGray" Grid.RowSpan="5"/>
+        <!-- Första kolumnen -->
+        <Border Grid.Column="1" Background="LightSlateGray" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2" Margin="0,0,318,0"/>
+        <Border Grid.Column="1" Background="LightSlateGray" Grid.Row="1" Grid.ColumnSpan="3" Margin="246,0,71,0" />
+        <!-- Kontohantering -->
+        <Border Grid.Column="1" Background="LightSlateGray" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="3" Margin="246,246,71,0"/>
+        <!-- Ny kund -->
+        <Border Grid.Column="2" Background="LightSlateGray" Grid.RowSpan="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="238,0,0,0" Width="107"/>
+        <!-- Sista raden -->
+
+
+        <!-- Välj kund att arbeta med -->
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="20,20,20,5">
+            <TextBlock Foreground="White" HorizontalAlignment="Left" Margin="0,0,0,80" Text="Bank" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift Light" FontSize="18"/>
+            <Label Foreground="White" Content="Välj kund" Margin="-4,0,0,0" />
+            <ComboBox x:Name="CboCustomer" SelectionChanged="CboCustomer_SelectionChanged" />
+            <Button  x:Name="visabankkontoknapp" Content="Visa bankkonto" Margin="0,15,0,0" HorizontalAlignment="Left" MinWidth="100" MaxWidth="200" Click="Button_Click_1"/>
+        </StackPanel>
+
+        <!-- Presentera kundens konton -->
+        <StackPanel Grid.Column="1" Grid.Row="2" Margin="20,20,20,5">
+            <TextBlock Foreground="White" HorizontalAlignment="Left" Text="Kontouppgifter" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift Light" FontSize="18"/>
+            <ListBox x:Name="kontouppgifterbox" MinHeight="150"/>
+        </StackPanel>
+
+        <!-- Visa kontoutdrag (om du gjort bonusdelen med transaktioner). Detta kan du radera om du vill -->
+        <StackPanel Grid.Column="1" Grid.Row="4" Margin="20,20,20,5">
+            <TextBlock Foreground="White" HorizontalAlignment="Left" Margin="5,0,0,0" Text="Kontoutdrag" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift Light" FontSize="18"/>
+            <ListBox x:Name="kontoutdragbox" MinHeight="150" />
+        </StackPanel>
+
+        <!-- Sätt in och ta ut pengar från markerat konto -->
+        <StackPanel Grid.Row="3" Grid.Column="1" Margin="20,20,5,5">
+            <TextBlock Foreground="White" HorizontalAlignment="Left" Text="Hantera transaktioner" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift Light" FontSize="18"/>
+            <Label Foreground="White" Content="Typ" FontWeight="Bold" Margin="-4,0,0,0"  />
+            <RadioButton x:Name="uttagradioknapp" Foreground="White"  IsChecked="True" Content="Uttag" />
+            <RadioButton x:Name="insättningsradioknapp" Foreground="White" IsChecked="False" Content="Insättning" />
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                <Label Foreground="White" Content="Belopp: "  Margin="-4,0,0,0" />
+                <TextBox x:Name="Beloppbox" Margin="0,5,0,0" MinWidth="100" MaxWidth="250" HorizontalAlignment="Left" />
+            </StackPanel>
+            <Button x:Name="hante" Content="Ok" Margin="0,5,0,0" HorizontalAlignment="Left" MinWidth="100" MaxWidth="200" Click="Button_Click_2"/>
+        </StackPanel>
+
+        <!-- Ny kund -->
+        <StackPanel Grid.Row="2" Grid.Column="2" Margin="45,20,45,5" Grid.RowSpan="2">
+            <TextBlock Foreground="White" HorizontalAlignment="Left" Margin="0,0,0,5" Text="Lägg till ny kund" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift Light" FontSize="18"/>
+            <Label Foreground="White" Content="Förnamn" />
+            <TextBox x:Name="förnamntxt" />
+            <Label Foreground="White" Content="Efternamn" />
+            <TextBox x:Name="efternamntxt"  />
+            <Label Foreground="White" Content="Telefon" />
+            <TextBox x:Name="telefontxt" />
+            <Button x:Name="sparakund" Content="Spara" Margin="0,10,0,0" HorizontalAlignment="Left" MinWidth="100" MaxWidth="200" Click="sparakund_Click"/>
+        </StackPanel>
+
+        <!-- Skapa nytt konto för vald kund -->
+        <StackPanel Margin="45,20,45,45" Grid.Column="2" Grid.Row="1">
+            <TextBlock Foreground="White" HorizontalAlignment="Left" Margin="0,0,0,5" Text="Skapa konto" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift Light" FontSize="18"/>
+            <Label Foreground="White" Content="Typ" FontWeight="Bold" Margin="-4,0,0,0"/>
+            <RadioButton x:Name="checkingaccradio"  Foreground="White" IsChecked="True" Content="Checkingaccount" />
+            <RadioButton  x:Name="savingaccradio"  Foreground="White" IsChecked="False" Content="Savingsaccount" />
+            <RadioButton x:Name="retirmentaccradio" Foreground="White" IsChecked="False" Content="Retirementaccount" />
+            <Label Content="Kredit" Foreground="White" />
+            <TextBox x:Name="kreditbox" Margin="0,5,0,10"/>
+            <Button x:Name="skapakontoknapp" Content="Ok" Margin="0,5,0,0" HorizontalAlignment="Left" MinWidth="100" MaxWidth="200" Click="Button_Click_3"/>
+        </StackPanel>
     </Grid>
 </Window>

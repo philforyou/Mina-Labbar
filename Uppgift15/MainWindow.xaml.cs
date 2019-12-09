@@ -25,13 +25,24 @@ namespace Uppgift15
             InitializeComponent();
         }
 
-        public string Jibberish(char bytee)
+        public string Jibberish(string strängen)
         {
-            string onödigt = "";
+            char[] sträng = strängen.ToCharArray();
+            char[] vokal = { 'a', 'e', 'i', 'o', 'u', 'y', 'å', 'ä' };
+            string tillbaka="";
 
-           onödigt += bytee.ToString().Replace(bytee, 'ö');
+            foreach (char bokstav in sträng)
+            {
+                for (int i = 0; i < vokal.Length; i++)
+                {
+                    if (bokstav == vokal[i])
+                    {  tillbaka=strängen.ToString().Replace(bokstav, 'ö'); }
+                }
 
-            return onödigt;
+            }
+
+            return tillbaka;
+
         }
         public bool isVowel(char kontroll)
         {
@@ -48,44 +59,63 @@ namespace Uppgift15
             }
             return false;
         }
-        public int NumberOfVowels(string kaffe)
+        public int NumberOfVowels(string Vowls)
         {
-            // char[] vokal = { 'a', 'e', 'i', 'o', 'u', 'y', 'å', 'ä' };
-            int antal = 0;
-            antal++;
-            return antal;
+            char[] strängen = Vowls.ToCharArray();
+            char[] vokal = { 'a', 'e', 'i', 'o', 'u', 'y', 'å', 'ä' };
+            int j = 0;
+            foreach (char bokstav in strängen)
+            {
+                for (int i = 0; i < vokal.Length; i++)
+                {
+                    if (bokstav==vokal[i])
+                    j++;
+                }
+            }
+            return j;
         }
         private void konventeraknapp_Click(object sender, RoutedEventArgs e)
         {
+           
             string gtext = grundtext.Text;
-          
-            string ord = "";
-            int siffra = 0;
-            foreach (char item in gtext)
-            {
-                bool bjas = isVowel(item);
-
-                if (bjas == true)
-                {
 
 
-                    ord = Jibberish(item);
-                    nytext.Content += ord;
 
-                    siffra += NumberOfVowels(item.ToString());
-                    gånger.Content = $"{siffra}";
-                }
+            string bytbokstav = "";
+            int antalvokaler = 0;
+           // nytext.Content = bytbokstav;
 
-                else
-                {
-                    nytext.Content += item.ToString();
+            antalvokaler = NumberOfVowels(gtext);
+            bytbokstav = Jibberish(gtext);
+            nytext.Content = bytbokstav;
+            /* foreach (char bokstav in gtext)
+             {
+                 bool vokal = isVowel(bokstav);
+                 bytbokstav = Jibberish(gtext);
+                 nytext.Content = bytbokstav;
 
-                }
-            }
-           
+                 antalvokaler = NumberOfVowels(gtext);
+                 */
+            //if (vokal == true)
+            //{
+            //    bytbokstav = Jibberish(gtext);
+            //    nytext.Content = bytbokstav;
 
-           
+            //    antalvokaler = NumberOfVowels(gtext);
+
+            //}
+
+            //else
+            //{
+            //    nytext.Content = gtext.ToString();
+
+            //}
+            gånger.Content = $"{antalvokaler}";
             
+
+
+
+
 
         }
     }

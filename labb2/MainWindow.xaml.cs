@@ -20,7 +20,7 @@ namespace labb2
     /// </summary>
     public partial class MainWindow : Window
     {
-       // List<Customer> Customers = new List<Customer>();
+      
 
         private List<Customer> Customers { get; set; } = new List<Customer>();
 
@@ -55,7 +55,7 @@ namespace labb2
 
             //metod test
             checkingAccount.Insättning(1000M);
-            ((CheckingAccount)checkingAccount).SetCredit(0.3M);
+            ((CheckingAccount)checkingAccount).SetCredit(300M);
             //bool y = checkingAccount.Uttag(130M);
             //bool w = checkingAccount.Uttag(1300M);
             decimal z = checkingAccount.TillgängligtSaldo();
@@ -134,22 +134,23 @@ namespace labb2
             BankAccount bankaccount = kontouppgifterbox.SelectedItem as BankAccount;
             if (insättningsradioknapp.IsChecked == true)
             {
-                    bankaccount.Insättning(decimal.Parse(Beloppbox.Text));
-                    kontoutdragbox.Items.Add($"{DateTime.Now} - insättning   {Beloppbox.Text}");
+                bankaccount.Insättning(decimal.Parse(Beloppbox.Text));
+                kontoutdragbox.Items.Add($"{DateTime.Now} - insättning   {Beloppbox.Text}");
             }
 
             else if (uttagradioknapp.IsChecked == true)
-            { if(bankaccount.Uttaggodkänt(decimal.Parse(Beloppbox.Text)) == true)
-                    { 
-                        bankaccount.Uttag(decimal.Parse(Beloppbox.Text));
-                        kontoutdragbox.Items.Add($"{DateTime.Now} - uttag    {Beloppbox.Text}");
-                    }
-                        else if (bankaccount.Uttaggodkänt(decimal.Parse(Beloppbox.Text)) == false)
-                         {
-                            MessageBox.Show("du har inte tillräcklig tänktning på kontot för att göra detta uttag"); 
-                         }
+            {
+                if (bankaccount.Uttaggodkänt(decimal.Parse(Beloppbox.Text)) == true)
+                { kontoutdragbox.Items.Add($"{DateTime.Now} - uttag    {Beloppbox.Text}"); }
+
+                else
+                   if (bankaccount.AccountType == "ReterimentAccount")
+                { MessageBox.Show("Du saknar täckning på ditt konto, vänligen notera att täckning för en uttagningsavgift på 10% behövs för ReterimentAccounts "); }
+                    
+                else 
+                    MessageBox.Show("Du saknar täckning på ditt konto");
             }
-              UpdateUI();
+            UpdateUI();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -158,15 +159,16 @@ namespace labb2
             List<BankAccount> BankAccounts = new List<BankAccount>();
             BankAccount bankAccount = new BankAccount();
             if (checkingaccradio.IsChecked == true)
-            { bankAccount = customer.CreateAccount("CheckingAccount"); }
+            { bankAccount = customer.CreateAccount("CheckingAccount");
+                bankAccount.SetCredit(Convert.ToDecimal(kreditbox.Text));
+            }
         
             if (savingaccradio.IsChecked == true)
-            { bankAccount = customer.CreateAccount("SavingsAccount"); }
+            { bankAccount = customer.CreateAccount("SavingsAccount");}
 
             if (retirmentaccradio.IsChecked == true)
             { bankAccount = customer.CreateAccount("ReterimentAccount"); }
 
-            bankAccount.SetCredit(Convert.ToDecimal(kreditbox.Text));
             UpdateUI();
         }
 

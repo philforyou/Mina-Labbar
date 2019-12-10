@@ -8,14 +8,25 @@ namespace labb2
     {
 
 
+
         public override bool Uttaggodkänt(decimal withdrawl)
         {
-
-            if ((Balance) >= withdrawl * 1.1M)
-            { return true; }
+            if (Balance + Credit >= withdrawl*1.1M)
+            {
+                Uttag(withdrawl);
+                return true;
+            }
             else
                 return false;
         }
+
+        public override decimal Uttag(decimal withdrawl)
+        {
+            Balance = Balance - (withdrawl * 1.1M);
+            return Balance;
+        }
+
     }
+
 
 }

@@ -29,14 +29,19 @@ namespace labb2
 
 
         public virtual bool Uttaggodkänt(decimal withdrawl)
-        { 
-            if (Balance >= withdrawl)
-            { return true; }
+        {
+
+
+            if (Balance + Credit >= withdrawl)
+            {
+                Uttag(withdrawl);
+                return true;
+            }
             else
-                return false; 
+                return false;
         }
 
-        public decimal Uttag (decimal withdrawl)
+        public virtual decimal Uttag (decimal withdrawl)
         {
             Balance = Balance - withdrawl;
             return Balance;

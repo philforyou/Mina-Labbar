@@ -23,6 +23,8 @@ namespace Godiskalkylatorn
     public partial class MainWindow : Window
     {
         CandyCalculator candyCalculator = new CandyCalculator();
+       
+        List<Person> peoplelist = new List<Person>();
 
 
         public MainWindow()
@@ -35,7 +37,7 @@ namespace Godiskalkylatorn
         {
             if (File.Exists("peoplelist.bin"))
             {
-                List<Person> peoplelist = new List<Person>();
+                //List<Person> peoplelist = new List<Person>();
                 peoplelist = (List<Person>)FileOperations.Deserialize("peoplelist.bin");
                 for (int j = 0; j < peoplelist.Count; j++)
                 {
@@ -55,13 +57,11 @@ namespace Godiskalkylatorn
             person1 = person1.SkapaPerson(namnbox.Text, int.Parse(ålderbox.Text));
             candyCalculator.AddPerson(person1);
             List1.Items.Add($"{namnbox.Text} ({ålderbox.Text} år)");
-
-
         }
 
         private void Fördelagodisknapp_Click(object sender, RoutedEventArgs e)
         {
-            List<Person> peoplelist = new List<Person>();
+            
             peoplelist = candyCalculator.GetPeople();
             List1.Items.Clear();
             if (Åldersknapp.IsChecked == true)
@@ -78,7 +78,7 @@ namespace Godiskalkylatorn
 
         private void Sparaknapp_Click(object sender, RoutedEventArgs e)
         {
-            List<Person> peoplelist = new List<Person>();
+          
             peoplelist = candyCalculator.GetPeople();
             FileOperations.Serialize(peoplelist, "peoplelist.bin");
            

@@ -28,16 +28,16 @@ namespace Uppgift15
         public string Jibberish(string strängen)
         {
             char[] sträng = strängen.ToCharArray();
-            char[] vokal = { 'a', 'e', 'i', 'o', 'u', 'y', 'å', 'ä' };
+            
             string tillbaka="";
 
             foreach (char bokstav in sträng)
             {
-                for (int i = 0; i < vokal.Length; i++)
-                {
-                    if (bokstav == vokal[i])
+                
+                
+                    if (isVowel(bokstav) == true)
                     {  tillbaka=strängen.ToString().Replace(bokstav, 'ö'); }
-                }
+                
 
             }
 
@@ -62,15 +62,15 @@ namespace Uppgift15
         public int NumberOfVowels(string Vowls)
         {
             char[] strängen = Vowls.ToCharArray();
-            char[] vokal = { 'a', 'e', 'i', 'o', 'u', 'y', 'å', 'ä' };
+            
             int j = 0;
             foreach (char bokstav in strängen)
             {
-                for (int i = 0; i < vokal.Length; i++)
-                {
-                    if (bokstav==vokal[i])
+               
+                
+                    if (isVowel(bokstav)==true)
                     j++;
-                }
+                
             }
             return j;
         }
